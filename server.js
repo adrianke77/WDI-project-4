@@ -34,7 +34,6 @@ app.use(
 
 app.use( function( req, res, next ) {
   // gives information on requests hitting server
-  console.log(req.method,req.originalUrl)
   next();
 } );
 
@@ -98,7 +97,6 @@ app.post('/me', bodyParser.json(), stormpath.loginRequired, function (req, res) 
 app.post('/userStore', bodyParser.json(), function (req, res) {
   console.log('create/update route triggered on backend')
   let email = req.body.userData.stormpathUserData.email
-  console.log(email)
   UserStore.findOne(
     {
       'userData.stormpathUserData.email': email
@@ -108,14 +106,11 @@ app.post('/userStore', bodyParser.json(), function (req, res) {
         let updatedUserStore = new UserStore(req.body)
         updatedUserStore.save()
         userStore.remove()
-        console.log('userdata updated')
-        console.log(updatedUserStore)
         res.json({ message: 'userdata updated' })
       } else {
         UserStore.create(
           req.body,
           (err, newUser => {
-            console.log('userdata created')
             res.json({ message: 'new user created' })
           })
         )
@@ -152,22 +147,3 @@ app.on('stormpath.ready', function () {
     console.log('Listening at http://localhost:3000')
   })
 })
-
-// //respond to ajax poll of whether user has an update
-// router.get( '/pollforchanges/', function( req, res ) {
-//   Changetracker.findOne( {
-//     identifier: "tracker"
-//   }, ( err, tracker ) => {
-//     let changes = tracker.usersWithChanges;
-//     let userid = req.user.id.toString();
-//     if ( changes.includes( userid ) ) {
-//       let index = changes.indexOf( userid );
-//       tracker.usersWithChanges.splice( index, 1 );
-//       tracker.save();
-//       req.flash( "success", "A trade has updated" );
-//       res.json( { "changefound": "true" } );
-//     } else {
-//       res.json( { "changefound": "false" } );
-//     }
-//   } );
-// } );

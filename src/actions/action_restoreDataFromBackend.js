@@ -29,7 +29,8 @@ export default function () {
     fetch(url, init).then(response => response.json()).then(json => {
       console.log(json)
       if (json) {
-        console.log('action:backend returned with reload data')
+        console.log('action:backend returned with reload data',json)
+        json = setAllFetchingTagsToFalse(json)
         dispatch({
           type: 'LOAD_USERDATA_FROM_BACKEND',
           payload: json.userData
@@ -40,5 +41,12 @@ export default function () {
         })
       }
     })
+  }
+  function setAllFetchingTagsToFalse(json) {
+    json.images = json.images.map(image=>{
+      image.fetchingTags = false
+      return image
+    })
+    return json
   }
 }
