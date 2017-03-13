@@ -48,7 +48,7 @@ Deployment is work in progress, will be updated here when in place.
 
 * How to sequence the task of loading an image card. componentDidUpdate on each card checks for blob being not loaded, and fires an action to get it from Dropbox if so; if tags are not loaded and image is loaded it does likewise to get labels from Google Vision. 
 
-* How to manage AJAX requests in Redux actions. To avoid new requests for the same item while request is in progress, Redux state needs to store a flag noting if a request is ongoing. The function call in componentDidUpdate or similar in the relevant React component then conditionally only makes an new request if the request flag is false.
+* How to manage AJAX requests in Redux actions. To avoid new requests for the same item while request is in progress, Redux state needs to store a flag noting if a request is ongoing. The function call then conditionally makes a new request only if the request flag is false.
 
 * How to avoid saving to backend too frequently. The dispatch that resets the flag for backend save completion only activates after a two second timeout; this prevents new saves until two seconds after the previous save.
 
