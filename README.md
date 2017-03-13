@@ -1,65 +1,58 @@
-# Your Project Name
+# PicTaggr
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+A web application for automatically adding tags to all of the user's images in Dropbox, allowing searching for images by tag text. 
+
+Tag text can be modified for custom tags; tags are saved in the backend and restored upon next login. Syncing with Dropbox can be done at any time and adds new images while removing images no longer in Dropbox.
 
 ## Getting Started
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
-
-### Prerequisites
-
-What is needed to install and run the project, how do we install them
+Git clone this repo to a new directory in your bash, then run
 
 ```
-Code example
+npm install
 ```
+
+First start your MongoDB server locally (```mongod``` or otherwise) so that the server can access it.
+
+To start the app server, run
+
+```
+npm start
+```
+
+You can access the app in a browser on localhost:3000 after the console reports that 'the server has started listening at http://localhost:3000'
 
 ### How to Use
 
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
+Follow the links in the app to create an account, then press connect to Dropbox.
 
+The app will redirect you to Dropbox where you can authorize the app to access your Dropbox contents.
 
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
-
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
+The app will then download your images asynchronously, and obtain tags for loaded images using Google Vision label detection functionality.
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+Deployment is work in progress, will be updated here when in place.
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
+* [jQuery](http://jquery.com/) - jQuery slim is used to support Bootstrap 4
+* [Bootstrap 4]()
+* [React]()
+* [Redux]()
+* [Express]()
+* [Stormpath]() - not advised at this time as the Stormpath React API is not able to provide auth tokens that are needed to pass Stormpath Express middleware in the backend; apparently due to different versions being available for React and Express APIs
+* [Masonry for React]() - the animations for card movements when added/removed
 
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+## Things Learnt
 
-## Workflow
+* How to sequence the task of loading an image card. componentDidUpdate on each card checks for blob being not loaded, and fires an action to get it from Dropbox if so; if tags are not loaded and image is loaded it does likewise to get labels from Google Vision. 
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+* How to manage AJAX requests in Redux actions. To avoid new requests for the same item while request is in progress, Redux state needs to store a flag noting if a request is ongoing. The function call in componentDidUpdate or similar in the relevant React component then conditionally only makes an new request if the request flag is false.
 
-## Authors
+* How to avoid saving to backend too frequently. The dispatch that resets the flag for backend save completion only activates after a two second timeout; this prevents new saves until two seconds after the previous save.
 
-Did you collaborate with others on this project, list them here
+* How to display blob image data as an image in html:
+```<img src={window.URL.createObjectURL(<image blob>)}/>```
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
+* How to convert blobs to base64 string for passing to Google Vision: use fileReader to convert to base64, then strip off the start containing the MIME type and 'base64,', then send to Google Vision.
