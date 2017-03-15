@@ -135,7 +135,6 @@ app.post('/userStore/restore', bodyParser.json(), function (req, res) {
       'userData.stormpathUserData.email': email
     },
     (err, userStore) => {
-      console.log('sent:', userStore)
       res.json(userStore) // sends null value in json if no user found
     })
 })
