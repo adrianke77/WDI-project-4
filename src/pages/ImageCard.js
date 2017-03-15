@@ -31,7 +31,7 @@ class ImageCard extends React.Component {
       this.props.userData.dropboxUserData &&
       !this.props.image.fetchingBlob
       ) {
-      this.props.getBlobFromDropbox(this.props.id)
+      this.props.getBlobFromDropbox(this.props.image.id)
     }
     if (
       this.props.image.tags.length === 0 &&
