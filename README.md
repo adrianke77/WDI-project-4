@@ -20,7 +20,7 @@ To start the app server, run
 npm start
 ```
 
-You can access the app in a browser on localhost:3000 after the console reports that 'the server has started listening at http://localhost:3000'
+You can access the app in a browser on localhost:3000 after the console reports that the server has started listening.
 
 ### How to Use
 
@@ -32,7 +32,7 @@ The app will then download your images asynchronously, and obtain tags for loade
 
 ## Live Version
 
-Deployment is work in progress, will be updated here when in place.
+The app is deployed live on [Heroku](https://pictaggr.herokuapp.com/).
 
 ## Built With
 
