@@ -119,7 +119,7 @@ function mapStateToProps (state, ownProps) {
   return {
     image: image,
     visibilityFilter: state.visibilityFilter,
-    userdata: state.userdata
+    userData: state.userData
   }
 }
 
