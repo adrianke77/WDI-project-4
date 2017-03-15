@@ -28,6 +28,7 @@ class ImageCard extends React.Component {
 
   loadDataIfNeeded() {
     if (!this.props.image.blob &&
+      this.props.image &&
       this.props.userData.dropboxUserData &&
       !this.props.image.fetchingBlob
       ) {
