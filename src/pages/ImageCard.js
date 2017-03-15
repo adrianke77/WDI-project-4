@@ -16,7 +16,7 @@ import '../css/imageCard.css'
 
 class ImageCard extends React.Component {
   componentDidMount () {
-    if (!this.props.image.blob && this.props.state.userData.dropboxUserData) {
+    if (!this.props.image.blob && this.props.state.userData && this.props.state.userData.dropBoxData) {
       this.props.getBlobFromDropbox(this.props.id)
     }
   }
