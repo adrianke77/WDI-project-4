@@ -11,7 +11,7 @@ export default function (id) {
       headers: headers
     }
     fetch(url, init).then(response => response.blob()).then(blob => {
-  
+      console.log('action:blob response from dropbox:',blob)
       dispatch({
         type: 'SAVE_BLOB_FOR_IMAGE',
         payload: {
