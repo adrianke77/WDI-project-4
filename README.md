@@ -20,7 +20,7 @@ To start the app server, run
 npm start
 ```
 
-You can access the app in a browser on localhost:3000 after the console reports that 'the server has started listening at http://localhost:3000'
+You can access the app in a browser on localhost:3000 after the console reports that the server has started listening.
 
 ### How to Use
 
