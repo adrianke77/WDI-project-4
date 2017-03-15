@@ -2,6 +2,7 @@ export default function (id) {
   return (dispatch, getstate) => {
     const url = 'https://content.dropboxapi.com/2/files/download' // dropbox download settings
     const token = getstate().userData.dropboxUserData.access_token
+    console.log('action: data used to get blob:',id,token)
     const headers = new Headers({
       Authorization: `Bearer ${token}`,
       'Dropbox-API-Arg': JSON.stringify({ path: `${id}` })

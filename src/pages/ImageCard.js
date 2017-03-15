@@ -16,7 +16,7 @@ import '../css/imageCard.css'
 
 class ImageCard extends React.Component {
   componentDidMount () {
-    if (!this.props.image.blob) {
+    if (!this.props.image.blob && this.props.state.userData.dropboxUserData) {
       this.props.getBlobFromDropbox(this.props.id)
     }
   }
@@ -119,6 +119,7 @@ function mapStateToProps (state, ownProps) {
   return {
     image: image,
     visibilityFilter: state.visibilityFilter
+    userdata: state.userdata
   }
 }
 
