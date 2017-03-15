@@ -16,6 +16,7 @@ export default function (id) {
       headers: headers
     }
     fetch(url, init).then(response => response.blob()).then(blob => {
+      console.log('id for blob:',id)
       console.log('blob returned: blob',blob)
       dispatch({
         type: 'SAVE_BLOB_FOR_IMAGE',
