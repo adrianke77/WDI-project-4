@@ -32,7 +32,7 @@ The app will then download your images asynchronously, and obtain tags for loade
 
 ## Live Version
 
-Deployment is work in progress, will be updated here when in place.
+The app is deployed live on [Heroku](https://pictaggr.herokuapp.com/).
 
 ## Built With
 
