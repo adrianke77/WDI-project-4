@@ -15,13 +15,11 @@ import updateTag from '../actions/action_updateTag.js'
 import '../css/imageCard.css'
 
 class ImageCard extends React.Component {
-  componentDidMount () {
+  componentDidUpdate (prevProps, prevState) {
     if (!this.props.image.blob && this.props.userData.dropBoxData) {
       this.props.getBlobFromDropbox(this.props.id)
     }
-  }
 
-  componentDidUpdate (prevProps, prevState) {
     if (
       this.props.image.tags.length === 0 &&
       this.props.image.blobAvailable === true &&
@@ -81,13 +79,13 @@ class ImageCard extends React.Component {
     } else {
       let tags = this.props.image.tags.map((tagObject, tagIndex) => {
         let tag = ''
-        let percentage = 
+        let percentage =
           typeof tagObject.score === 'number'
           ? Math.floor(tagObject.score * 100) + '% certainty'
           : tagObject.score
         tag = tagObject.description
         let filterString = this.props.visibilityFilter.string
-        let tagColor=
+        let tagColor =
           filterString !== '' && tag.includes(filterString)
           ? 'greenhighlight'
           : ''
