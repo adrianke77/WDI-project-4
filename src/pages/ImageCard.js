@@ -118,7 +118,7 @@ function mapStateToProps (state, ownProps) {
   let image = state.images.find(imageObject => imageObject.id === ownProps.id)
   return {
     image: image,
-    visibilityFilter: state.visibilityFilter
+    visibilityFilter: state.visibilityFilter,
     userdata: state.userdata
   }
 }
