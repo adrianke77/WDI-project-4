@@ -140,7 +140,7 @@ app.get('*', function (req, res) {
 // start listening when stormpath reports ready
 app.on('stormpath.ready', function () {
   console.log('stormpath ready')
-  app.listen(3000, 'localhost', function (err) {
+  app.listen(process.env.PORT||3000, 'localhost', function (err) {
     if (err) {
       return console.error(err)
     }
