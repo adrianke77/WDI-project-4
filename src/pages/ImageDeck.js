@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 
 import updateFilterString from '../actions/action_updateFilterString.js'
 
-import ImageCard from './imageCard'
+import ImageCard from './ImageCard'
 import getImageIdsFromDropbox
   from '../actions/action_getImageIdsFromDropbox.js'
 
