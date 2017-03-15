@@ -15,8 +15,10 @@ import updateTag from '../actions/action_updateTag.js'
 import '../css/imageCard.css'
 
 class ImageCard extends React.Component {
+
   componentDidUpdate (prevProps, prevState) {
-    if (!this.props.image.blob && this.props.userData.dropBoxData) {
+    console.log(this.props.image.blob,this.props.userData.dropboxUserData)
+    if (!this.props.image.blob && this.props.userData.dropboxUserData) {
       this.props.getBlobFromDropbox(this.props.id)
     }
 
