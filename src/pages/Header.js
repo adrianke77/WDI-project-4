@@ -9,7 +9,7 @@ import {
   NotAuthenticated,
 } from "react-stormpath";
 
-import "../css/Header.css";
+import "../css/header.css";
 
 export default class Header extends React.Component {
   render() {
