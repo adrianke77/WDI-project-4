@@ -17,16 +17,15 @@ import '../css/imageCard.css'
 class ImageCard extends React.Component {
 
   componentDidMount() {
-    console.log('checking loadDataIfNeeded in didmount')
     this.loadDataIfNeeded()
   }
 
   componentDidUpdate () {
-    console.log('checking loadDataIfNeeded in didupdate')
     this.loadDataIfNeeded()
   }
 
   loadDataIfNeeded() {
+    console.log(this.props.image)
     if (!this.props.image.blob &&
       this.props.image &&
       this.props.userData.dropboxUserData &&
