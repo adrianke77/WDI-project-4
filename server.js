@@ -1,9 +1,9 @@
 require('dotenv').config()
-var webpack = require('webpack')
-var config = require('./webpack.config')
-var express = require('express')
-var stormpath = require('express-stormpath')
-var webpackDevMiddleware = require('webpack-dev-middleware')
+const webpack = require('webpack')
+const config = require('./webpack.config')
+const express = require('express')
+const stormpath = require('express-stormpath')
+const webpackDevMiddleware = require('webpack-dev-middleware')
 
 const mongoose = require('mongoose')
 
@@ -13,13 +13,13 @@ mongoose.connect(
 
 mongoose.Promise = global.Promise
 
-var app = express()
+const app = express()
 
-var compiler = webpack(config)
+const compiler = webpack(config)
 
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 
-var path = require('path')
+const path = require('path')
 
 // create mongoose UserImage model with no schema
 const UserStoreSchema = new mongoose.Schema({}, { strict: false })

@@ -1,5 +1,4 @@
 // landing page
-
 import { Link } from 'react-router'
 import React, { PropTypes } from 'react'
 import {
@@ -19,7 +18,18 @@ import restoreDataFromBackend from '../actions/action_restoreDataFromBackend.js'
 
 import '../css/indexPage.css'
 
+
+
 class IndexPage extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.dropboxClientId=process.env.DROPBOX_CLIENT_ID
+    this.dropboxRedirectUri=
+      process.env.NODE_ENV === 'production'
+      ? 'https://pictaggr.herokuapp.com'
+      : 'http://localhost:3000'
+  }
   
   componentDidUpdate () {
     // check all images for tagsSaved
@@ -42,6 +52,9 @@ class IndexPage extends React.Component {
   }
 
   render () {
+
+    const dropboxLoginHref = `https://www.dropbox.com/oauth2/authorize?client_id=${this.dropboxClientId};response_type=token;redirect_uri=${this.dropboxRedirectUri}`
+
     return (
       <div>
         {!this.props.userData.dropboxUserData &&
@@ -63,7 +76,7 @@ class IndexPage extends React.Component {
                   <br />
                   <a
                     className='btn btn-primary'
-                    href='https://www.dropbox.com/oauth2/authorize?client_id=jiejenwhjst84wp&amp;response_type=token&amp;redirect_uri=http://localhost:3000'
+                    href={dropboxLoginHref}
                     role='button'
                   >
                     Connect
@@ -75,11 +88,11 @@ class IndexPage extends React.Component {
         </Authenticated>
         <NotAuthenticated>
           <h5 className='text-center'>
-            Please{' '}
-            <a href='\login'>login</a>
-            {' '}or{' '}
-            <a href='\register'>create</a>
-            {' '}a new account to get started!
+            Please
+            <a href='\login'> login </a>
+            or
+            <a href='\register'> create </a>
+            a new account to get started!
           </h5>
         </NotAuthenticated>
       </div>

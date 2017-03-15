@@ -1,6 +1,7 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
 // var LiveReloadPlugin = require('webpack-livereload-plugin')
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: ['./src/app'],
@@ -25,5 +26,10 @@ module.exports = {
     ]
   },
   // plugins: [new LiveReloadPlugin()]
+  plugins: [
+    new Dotenv({
+      path: './.env', // if not simply .env  
+    })
+  ]
 }
 
