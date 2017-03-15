@@ -1,7 +1,6 @@
 // USER AUTH NOT WORKING!!!! NEED TO FIX!!!
 
 export default function () {
-  console.log('action restore from backend triggered')
   return (dispatch, getstate) => {
     let originalStore = getstate()
     let store = Object.assign({}, originalStore)
@@ -25,11 +24,8 @@ export default function () {
         email: email
       })
     }
-    console.log('reload fetch sending now')
     fetch(url, init).then(response => response.json()).then(json => {
-      console.log(json)
       if (json) {
-        console.log('action:backend returned with reload data',json)
         json = setAllFetchingTagsToFalse(json)
         dispatch({
           type: 'LOAD_USERDATA_FROM_BACKEND',

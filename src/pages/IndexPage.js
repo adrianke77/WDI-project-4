@@ -20,9 +20,7 @@ import restoreDataFromBackend from '../actions/action_restoreDataFromBackend.js'
 import '../css/indexPage.css'
 
 class IndexPage extends React.Component {
-
-      
-
+  
   componentDidUpdate () {
     // check all images for tagsSaved
     let areAllTagsSaved = this.props.images.reduce(
@@ -33,8 +31,6 @@ class IndexPage extends React.Component {
     )
     // save data to backend if conditions correct
     if (!areAllTagsSaved || !this.props.userData.userDataSaved) {
-      console.log('saving:tags unsaved or userData unsaved')
-      console.log(this.props.userData.isSaving)
       if (!this.props.userData.isSaving && this.props.userData.stormpathUserData &&
         this.props.userData.dropboxUserData) {
         this.props.saveDataToBackend()
@@ -42,7 +38,6 @@ class IndexPage extends React.Component {
     }
     // restore data from backend if conditions correct
     if (this.props.userData.stormpathUserData && !this.props.userData.triedToRestoreData) { 
-        console.log('indexpage:called action to restore data')
         this.props.restoreDataFromBackend() }
   }
 

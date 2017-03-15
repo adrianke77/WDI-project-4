@@ -18,7 +18,6 @@ export default function (state = {}, action) {
       userDataState.userDataSaved = true
       break
     case 'LOAD_USERDATA_FROM_BACKEND':// payload is userData
-    console.log('reducer:userdata loaded')
       userDataState = payload
       userDataState.triedToRestoreData = true
       userDataState.isSaving = false
