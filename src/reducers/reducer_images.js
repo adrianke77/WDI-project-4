@@ -14,6 +14,7 @@ export default function (state = [], action) {
       break
     case 'SAVE_BLOB_FOR_IMAGE': // payload is {blob:blob, id:id}
       image = imagesState.find(imageObject => imageObject.id === payload.id)
+      console.log(image)
       image.blob = payload.blob
       image.blobAvailable = true
       image.fetchingBlob = false
