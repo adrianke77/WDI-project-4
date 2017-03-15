@@ -52,7 +52,7 @@ class IndexPage extends React.Component {
 
   render () {
 
-    const dropboxLoginHref = `https://www.dropbox.com/oauth2/authorize?client_id=${this.dropboxClientId};response_type=token;redirect_uri=${this.dropboxRedirectUri}`
+    const dropboxLoginHref = `https://www.dropbox.com/oauth2/authorize?client_id=${this.dropboxClientId}&response_type=token&redirect_uri=${this.dropboxRedirectUri}`
 
     return (
       <div>
