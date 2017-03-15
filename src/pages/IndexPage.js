@@ -24,8 +24,8 @@ class IndexPage extends React.Component {
     super(props)
     this.dropboxClientId='jiejenwhjst84wp'
     this.dropboxRedirectUri= 
-      // 'https://pictaggr.herokuapp.com'
-      'http://localhost:3000'
+      'https://pictaggr.herokuapp.com'
+      // 'http://localhost:3000'
   }
   
   componentDidUpdate () {
