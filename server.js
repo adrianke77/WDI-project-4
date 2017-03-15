@@ -151,6 +151,6 @@ app.on('stormpath.ready', function () {
     if (err) {
       return console.error(err)
     }
-    console.log('Listening at http://localhost:3000')
+    console.log(`Listening at port ${process.env.PORT || 3000}`)
   })
 })
