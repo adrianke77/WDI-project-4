@@ -21,7 +21,6 @@ import '../css/indexPage.css'
 class IndexPage extends React.Component {
 
   constructor(props){
-    console.log(process.env)
     super(props)
     this.dropboxClientId=process.env.DROPBOX_CLIENT_ID
     this.dropboxRedirectUri=
