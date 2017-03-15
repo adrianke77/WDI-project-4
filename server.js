@@ -1,3 +1,4 @@
+require('dotenv').config()
 var webpack = require('webpack')
 var config = require('./webpack.config')
 var express = require('express')
@@ -32,14 +33,21 @@ app.use(
   })
 )
 
-app.use( function( req, res, next ) {
+app.use(function (req, res, next) {
   // gives information on requests hitting server
-  next();
-} );
+  next()
+})
 
 // initialise Stormpath
 app.use(
   stormpath.init(app, {
+    apiKey: {
+      id: process.env.STORMPATH_ID,
+      secret: process.env.STORMPATH_SECRET
+    },
+    application: {
+      href: process.env.STORMPATH_APP_HREF
+    },
     web: {
       produces: ['application/json']
     }
@@ -93,7 +101,7 @@ app.post('/me', bodyParser.json(), stormpath.loginRequired, function (req, res) 
 })
 
 // UNPROTECTED ROUTE!!!
-// NEED TO FIGURE OUT HOW TO GET STORMPATH AUTH MIDDLEWARE WORKING!!!!
+// need to get React Stormpath API to provide auth token, currently API does not provide
 app.post('/userStore', bodyParser.json(), function (req, res) {
   console.log('create/update route triggered on backend')
   let email = req.body.userData.stormpathUserData.email
@@ -119,7 +127,7 @@ app.post('/userStore', bodyParser.json(), function (req, res) {
   )
 })
 
-app.post('/userStore/restore',bodyParser.json(), function (req, res) {
+app.post('/userStore/restore', bodyParser.json(), function (req, res) {
   console.log('restore data route triggered ')
   let email = req.body.email
   UserStore.findOne(
@@ -127,8 +135,8 @@ app.post('/userStore/restore',bodyParser.json(), function (req, res) {
       'userData.stormpathUserData.email': email
     },
     (err, userStore) => {
-      console.log('sent:',userStore)
-      res.json(userStore) //sends null value in json if no user found
+      console.log('sent:', userStore)
+      res.json(userStore) // sends null value in json if no user found
     })
 })
 
@@ -140,7 +148,7 @@ app.get('*', function (req, res) {
 // start listening when stormpath reports ready
 app.on('stormpath.ready', function () {
   console.log('stormpath ready')
-  app.listen(process.env.PORT||3000, 'localhost', function (err) {
+  app.listen(process.env.PORT || 3000, 'localhost', function (err) {
     if (err) {
       return console.error(err)
     }
