@@ -10,7 +10,7 @@ import ImageCard from './imageCard'
 import getImageIdsFromDropbox
   from '../actions/action_getImageIdsFromDropbox.js'
 
-import '../css/ImageDeck.css'
+import '../css/imageDeck.css'
 
 class ImageDeck extends React.Component {
   render () {
