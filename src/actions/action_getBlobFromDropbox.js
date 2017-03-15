@@ -1,5 +1,6 @@
 export default function (id) {
   return (dispatch, getstate) => {
+    console.log('started getting blob')
     dispatch({
         type: 'BLOB_FETCH_STARTED',
         payload: id
@@ -15,6 +16,7 @@ export default function (id) {
       headers: headers
     }
     fetch(url, init).then(response => response.blob()).then(blob => {
+      console.log('blob returned: blob',blob)
       dispatch({
         type: 'SAVE_BLOB_FOR_IMAGE',
         payload: {

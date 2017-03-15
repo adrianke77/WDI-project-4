@@ -15,7 +15,18 @@ import updateTag from '../actions/action_updateTag.js'
 import '../css/imageCard.css'
 
 class ImageCard extends React.Component {
-  componentDidUpdate (prevProps, prevState) {
+
+  componentDidMount() {
+    console.log('checking loadDataIfNeeded in didmount')
+    this.loadDataIfNeeded()
+  }
+
+  componentDidUpdate () {
+    console.log('checking loadDataIfNeeded in didupdate')
+    this.loadDataIfNeeded()
+  }
+
+  loadDataIfNeeded() {
     if (!this.props.image.blob &&
       this.props.userData.dropboxUserData &&
       !this.props.image.fetchingBlob
