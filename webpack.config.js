@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-var LiveReloadPlugin = require('webpack-livereload-plugin')
+// var LiveReloadPlugin = require('webpack-livereload-plugin')
 
 module.exports = {
   entry: ['./src/app'],
@@ -24,6 +24,6 @@ module.exports = {
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192' }
     ]
   },
-  plugins: [new LiveReloadPlugin()]
+  // plugins: [new LiveReloadPlugin()]
 }
 
