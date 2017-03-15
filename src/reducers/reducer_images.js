@@ -7,10 +7,16 @@ export default function (state = [], action) {
       imagesState = makeNewImageObjects(payload, imagesState)
       imagesState = removeMissingImageObjects(payload, imagesState)
       break
+    case 'BLOB_FETCH_STARTED': // payload is id
+      image = imagesState.find(imageObject => imageObject.id === payload)
+      image.fetchingBlob = true
+      image.version++
+      break
     case 'SAVE_BLOB_FOR_IMAGE': // payload is {blob:blob, id:id}
       image = imagesState.find(imageObject => imageObject.id === payload.id)
       image.blob = payload.blob
       image.blobAvailable = true
+      image.fetchingBlob = false
       image.version++
       break
     case 'ADD_TAGS_TO_IMAGE': // payload is {tags:tags,id:id}
@@ -56,6 +62,7 @@ function makeNewImageObjects (imageIdsList, imagesState) {
     blob: null,
     blobAvailable: false,
     fetchingTags: false,
+    fetchingBlob: false,
     tagSaved: true,
     version: 1
   }))

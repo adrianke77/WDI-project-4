@@ -15,18 +15,18 @@ import updateTag from '../actions/action_updateTag.js'
 import '../css/imageCard.css'
 
 class ImageCard extends React.Component {
-
   componentDidUpdate (prevProps, prevState) {
-    console.log(this.props.image.blob,this.props.userData.dropboxUserData)
-    if (!this.props.image.blob && this.props.userData.dropboxUserData) {
+    if (!this.props.image.blob &&
+      this.props.userData.dropboxUserData &&
+      !this.props.image.fetchingBlob
+      ) {
       this.props.getBlobFromDropbox(this.props.id)
     }
-
     if (
       this.props.image.tags.length === 0 &&
-      this.props.image.blobAvailable === true &&
-      this.props.image.fetchingTags === false
-    ) {
+      this.props.image.blobAvailable &&
+      !this.props.image.fetchingTags
+      ) {
       this.props.getTagsFromGoogleVision(this.props.id)
     }
   }
